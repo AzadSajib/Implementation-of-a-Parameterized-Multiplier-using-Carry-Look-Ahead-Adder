@@ -1,0 +1,11 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+create_rc_corner -name rcbest0 -T {0} -preRoute_res {1.0} -preRoute_cap {1.0} -preRoute_clkres {1.0} -preRoute_clkcap {1.0} -postRoute_res {1.0} -postRoute_cap {1.0} -postRoute_xcap {1.0} -postRoute_clkres {1.0} -postRoute_clkcap {1.0} -qx_tech_file {../../../../cad/VLSI2Lab/Digital/library/gpdk045.tch}
+create_rc_corner -name rcworst125 -T {125} -preRoute_res {1.0} -preRoute_cap {1.0} -preRoute_clkres {1.0} -preRoute_clkcap {1.0} -postRoute_res {1.0} -postRoute_cap {1.0} -postRoute_xcap {1.0} -postRoute_clkres {1.0} -postRoute_clkcap {1.0} -qx_tech_file {../../../../cad/VLSI2Lab/Digital/library/gpdk045.tch}
+create_library_set -name BC -timing {../library/fast_vdd1v0_basicCells.lib}
+create_library_set -name WC -timing {../library/slow_vdd1v0_basicCells.lib}
+create_delay_corner -name BC_rcbest0.hold -library_set {BC} -rc_corner {rcbest0}
+create_delay_corner -name WC_rcworst125.setup -library_set {WC} -rc_corner {rcworst125}
+create_analysis_view -name func@BC_rcbest0.hold -delay_corner {BC_rcbest0.hold}
+create_analysis_view -name func@WC_rcworst125.setup -delay_corner {WC_rcworst125.setup}
+set_analysis_view -setup {func@BC_rcbest0.hold} -hold {func@BC_rcbest0.hold}
